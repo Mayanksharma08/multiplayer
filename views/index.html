@@ -1,0 +1,99 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Become the next Math Genius!</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="A cool thing made with Glitch" />
+
+		<link
+			href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+			rel="stylesheet"
+		/>
+
+		<!-- import the webpage's stylesheet -->
+		<!-- <link rel="stylesheet" href="/style.css" /> -->
+
+		<!-- import socket.io -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
+			defer
+		></script>
+		<!-- import the webpage's client-side javascript file -->
+		<script src="/script.js" defer></script>
+	</head>
+	<body class="bg-green-500 m-0">
+		<!-- INTRO CONTAINER -->
+		<div
+			class="container flex flex-col justify-center items-center h-screen m-auto"
+			id="intro"
+		>
+			<h1 class="text-4xl font-bold text-white text-center">
+				Welcome to
+				<span class="text-red-800">Mind Game..</span>
+			</h1>
+
+			<form
+				class="bg-white w-1/2 rounded p-6 shadow-md mt-6 text-center"
+				id="user"
+			>
+				<h2 class="text-xl mb-4">
+					Enter name to join:
+				</h2>
+				<input
+					id="name"
+					class="d-block rounded w-full border border-gray-500 shadow p-4"
+					type="text"
+					placeholder="Enter your name..."
+                />
+                <h2 class="text-xl mb-4">
+					Enter roomid to join:
+				</h2>
+                <input
+                    id="room"
+					class="d-block rounded w-full border border-gray-500 shadow p-4"
+					type="text"
+					placeholder="Enter room id..."
+                />
+                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" id="sub">
+                    Button
+                </button>
+			</form>
+		</div>
+
+		<!-- GAME CONTAINER -->
+		<div
+			class="container flex flex-col justify-center items-center h-screen m-auto hidden"
+			id="game"
+		>
+			<div
+				class="fixed top-0 right-0 bg-white rounded p-6 shadow-md mt-2 mr-2 text-center"
+			>
+				<h3 class="text-2xl font-bold border-b border-gray-500 pb-4 mb-4">
+					Leaderboard
+				</h3>
+				<ul id="leaderboard"></ul>
+			</div>
+
+			<h1 class="text-4xl font-bold text-white text-center">
+				Answer the question:
+			</h1>
+
+			<form
+				class="bg-white w-1/2 rounded p-6 shadow-md mt-6 text-center"
+				id="submission"
+			>
+				<h1 class="text-4xl mb-4" id="question"></h1>
+				<input
+					id="response"
+					class="d-block rounded w-full border border-gray-500 shadow p-4"
+					type="text"
+					placeholder="Enter the response..."
+				/>
+			</form>
+		</div>
+	</body>
+</html>
