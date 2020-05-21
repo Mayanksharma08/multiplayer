@@ -23,7 +23,7 @@ userEl.addEventListener("click", (e) => {
 
 		socket.emit('user_joined', {name,room});
 
-		startGame();
+		startGame(room);
 	}
 });
 
@@ -34,6 +34,7 @@ function startGame() {
 	socket.on('question', (question) => {
 		questionEl.innerText = `${question} = ?`;
 	});
+
 
 	socket.on('leaderboard', (leaderboard) => {
 		leaderboardEl.innerHTML = `
@@ -55,7 +56,7 @@ submissionEl.addEventListener('submit', (e) => {
 
 	if (response) {
 		socket.emit('response', response);
-
+		questionEl.innerText = ``;
 		e.target['response'].value = '';
 	}
 });

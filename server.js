@@ -6,6 +6,7 @@ const io = require('socket.io')(http);
 const { createQuestion, getRandomNumber } = require('./helper_function');
 
 let players = {};
+let chance = 0;
 
 let question = createQuestion();
 
@@ -18,15 +19,17 @@ app.get('/', (request, response) => {
 });
 
 io.on('connection', function (socket) {
+	
 	socket.on('user_joined', (data) => {
 		const player = {
 			id: socket.id,
             name: data.name,
             room: data.room,
 			points: 0,
+			turn: false
         };
-        //console.log(player);
-        socket.join(data.room);
+        //console.log(player);	
+		socket.join(data.room);
         
         if(!players.hasOwnProperty(data.room)){
             players[data.room] = new Array();
@@ -43,8 +46,7 @@ io.on('connection', function (socket) {
 
 	socket.on('response', (response) => {
         // do something with the response
-        console.log(socket.id);
-        
+        chance++;
         let roomid = Object.keys(socket.rooms).filter(function(item) {
             return item !== socket.id;
         });
@@ -70,8 +72,6 @@ io.on('connection', function (socket) {
 });
 
 function increasePoints(id,roomid) {
-    console.log(roomid[0]);
-    console.log(players);
 
 	players[roomid[0]] = players[roomid[0]].map((player) => {
 		if (player.id === id) {
@@ -89,16 +89,31 @@ function updateGame(room) {
    const leaderboard = players[room].sort((a, b) => b.points - a.points).slice(0, 10);
 
    if(players[room].length == 4){
-		io.to(room).emit('question', question.expression);
+	   	if(chance%4 == 0){
+			var id = players[room][0].id;
+			io.to(id).emit('question', question.expression);	
+		}
+		if(chance%4 == 1){
+			var id = players[room][1].id;
+			io.to(id).emit('question', question.expression);	
+		}
+		if(chance%4 == 2){
+			var id = players[room][2].id;
+			io.to(id).emit('question', question.expression);	
+		}
+		if(chance%4 == 3){
+			var id = players[room][3].id;
+			io.to(id).emit('question', question.expression);	
+		}
    }
-	io.to(room).emit('leaderboard', leaderboard);
+		io.to(room).emit('leaderboard', leaderboard);
 }
 
 // USE THIS ON GLITCH
- http.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + process.env.PORT);
- });
+// http.listen(process.env.PORT, () => {
+//  console.log("Your app is listening on port " + process.env.PORT);
+// });
 
-//http.listen(3000, () => {
-//	console.log('Your app is listening on port ' + 3000);
-//});
+http.listen(3000, () => {
+	console.log('Your app is listening on port ' + 3000);
+});
