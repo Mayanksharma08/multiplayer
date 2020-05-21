@@ -88,15 +88,17 @@ function increasePoints(id,roomid) {
 function updateGame(room) {
    const leaderboard = players[room].sort((a, b) => b.points - a.points).slice(0, 10);
 
-	io.to(room).emit('question', question.expression);
+   if(players[room].length == 4){
+		io.to(room).emit('question', question.expression);
+   }
 	io.to(room).emit('leaderboard', leaderboard);
 }
 
 // USE THIS ON GLITCH
- http.listen(process.env.PORT, () => {
-   console.log("Your app is listening on port " + process.env.PORT);
- });
+// http.listen(process.env.PORT, () => {
+//  console.log("Your app is listening on port " + process.env.PORT);
+// });
 
-//http.listen(3000, () => {
-//	console.log('Your app is listening on port ' + 3000);
-//});
+http.listen(3000, () => {
+	console.log('Your app is listening on port ' + 3000);
+});
