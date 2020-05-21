@@ -94,7 +94,7 @@ function updateGame(room) {
 	io.to(room).emit('leaderboard', leaderboard);
 }
 
- USE THIS ON GLITCH
+// USE THIS ON GLITCH
  http.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + process.env.PORT);
  });
