@@ -43,115 +43,88 @@ function startGame() {
 	socket.on('question', (data) => {
 		cardsEl.classList.remove('hidden');
 		questionEl.innerText = `${data.question.expression} = ?`;
-		
+		console.log(data.playerChance);
 		if(data.playerChance.playerA){
 			Object.assign(playerA.style,{display:"none"});
-			Object.assign(playerB.style,{    width:"250px",
-				height:"200px",
-				top: "30px",
-				right: "-60px",
-				left: "20px",
-				bottom: "40px",
+			Object.assign(playerB.style,{    
+				margin:"250px -60px 40px 20px",
 				float: "right",
 				transform: "rotate(90deg)"
 			});
-			Object.assign(playerC.style,{width:"250px",
-				height:"200px",
-				top: "20px",
-				right: "auto",
-				left: "auto"
+			Object.assign(playerC.style,{
+				margin: "20px auto 0px auto",
+				float:"none",
+				height:"256px",
+				transform: "rotate(0deg)"
 			});
-			Object.assign(playerD.style,{width:"250px",
-			height:"200px",
-			top: "30px",
-			right: "20px",
-			left: "-60px",
-			bottom: "40px",
-			float: "left",
-			transform: "rotate(270deg)"});
+			Object.assign(playerD.style,{
+				margin:"250px 20px 40px -60px",
+				float: "left",
+				transform: "rotate(270deg)"
+		});
 		}
 
 		if(data.playerChance.playerB){
 			Object.assign(playerB.style,{display:"none"});
-			Object.assign(playerC.style,{    width:"250px",
-				height:"200px",
-				top: "30px",
-				right: "-60px",
-				left: "20px",
-				bottom: "40px",
+			Object.assign(playerC.style,{    
+				margin:"250px -60px 40px 20px",
 				float: "right",
 				transform: "rotate(90deg)"
 			});
-			Object.assign(playerD.style,{width:"250px",
-				height:"200px",
-				top: "20px",
-				right: "auto",
-				left: "auto"
+			Object.assign(playerD.style,{
+				margin: "20px auto 0px auto",
+				float:"none",
+				height:"256px",
+				transform: "rotate(0deg)"
 			});
-			Object.assign(playerA.style,{width:"250px",
-			height:"200px",
-			top: "30px",
-			right: "20px",
-			left: "-60px",
-			bottom: "40px",
-			float: "left",
-			transform: "rotate(270deg)"});
+			Object.assign(playerA.style,{
+				margin:"250px 20px 40px -60px",
+				float: "left",
+				transform: "rotate(270deg)"
+		});
 		}
 
 		if(data.playerChance.playerC){
 			Object.assign(playerC.style,{display:"none"});
-			Object.assign(playerD.style,{    width:"250px",
-				height:"200px",
-				top: "30px",
-				right: "-60px",
-				left: "20px",
-				bottom: "40px",
+			Object.assign(playerD.style,{    
+				margin:"250px -60px 40px 20px",
 				float: "right",
 				transform: "rotate(90deg)"
 			});
-			Object.assign(playerA.style,{width:"250px",
-				height:"200px",
-				top: "20px",
-				right: "auto",
-				left: "auto"
+			Object.assign(playerA.style,{
+				margin: "20px auto 0px auto",
+				float:"none",
+				height:"256px",
+				transform: "rotate(0deg)"
 			});
-			Object.assign(playerB.style,{width:"250px",
-			height:"200px",
-			top: "30px",
-			right: "20px",
-			left: "-60px",
-			bottom: "40px",
-			float: "left",
-			transform: "rotate(270deg)"});
+			Object.assign(playerB.style,{
+				margin:"250px 20px 40px -60px",
+				float: "left",
+				transform: "rotate(270deg)"
+		});
 		}
 
 		if(data.playerChance.playerD){
 			Object.assign(playerD.style,{display:"none"});
-			Object.assign(playerA.style,{    width:"250px",
-				height:"200px",
-				top: "30px",
-				right: "-60px",
-				left: "20px",
-				bottom: "40px",
+			Object.assign(playerA.style,{    
+				margin:"250px -60px 40px 20px",
 				float: "right",
 				transform: "rotate(90deg)"
 			});
-			Object.assign(playerB.style,{width:"250px",
-				height:"200px",
-				top: "20px",
-				right: "auto",
-				left: "auto"
+			Object.assign(playerB.style,{
+				margin: "20px auto 0px auto",
+				float:"none",
+				height:"256px",
+				transform: "rotate(0deg)"
 			});
-			Object.assign(playerC.style,{width:"250px",
-			height:"200px",
-			top: "30px",
-			right: "20px",
-			left: "-60px",
-			bottom: "40px",
-			float: "left",
-			transform: "rotate(270deg)"});
+			Object.assign(playerC.style,{
+				margin:"250px 20px 40px -60px",
+				float: "left",
+				transform: "rotate(270deg)"
+		});
 		}
-	});
+
+		});
 
 
 	socket.on('leaderboard', (leaderboard) => {

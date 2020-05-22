@@ -1,38 +1,18 @@
+/*
+margin: "top right bottom left"
+*/
 #img01{
- width:250px;
- height:200px;
- margin-top: 30px;
- margin-right: 20px;
- margin-left: -60px;
- margin-bottom: 40px;
- float: left;
- transform: rotate(270deg);   
+
 }
 
 #img02{
-    width:250px;
-    height:200px;
-    margin-top: 30px;
-    margin-right: -60px;
-    margin-left: 20px;
-    margin-bottom: 40px;
-    float: right;
-    transform: rotate(90deg); 
+
 }
 
 #img03{
-    width:250px;
-    height:200px;
-    margin-top: 20px;
-    margin-right: auto;
-    margin-left: auto;   
+  
 }
 
 #img04{
-    width:250px;
-    height:200px;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-left: 20px;
-    display: block;   
+  
 }
