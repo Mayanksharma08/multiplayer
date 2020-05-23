@@ -7,6 +7,10 @@ const playerA = document.getElementById('img01');
 const playerB = document.getElementById('img02');
 const playerC = document.getElementById('img03');
 const playerD = document.getElementById('img04');
+const cardA = document.getElementById('cardA');
+const cardB = document.getElementById('cardB');
+const cardC = document.getElementById('cardC');
+const cardD = document.getElementById('cardD');
 const cardsEl = document.getElementById('cards');
 const questionEl = document.getElementById('question');
 const leaderboardEl = document.getElementById('leaderboard');
@@ -40,10 +44,40 @@ function startGame() {
 	introEl.classList.add('hidden');
 	gameEl.classList.remove('hidden');
 
+	socket.on('UIupdate', (data) => {
+		if(data.playerChance.playerA){
+			cardA.innerText = `${data.currentplayer.cards[0]}  |`;
+			cardB.innerText = `|  ${data.currentplayer.cards[1]}  |`;
+			cardC.innerText = `|  ${data.currentplayer.cards[2]}  |`;
+			cardD.innerText = `|  ${data.currentplayer.cards[3]}  `;
+		}
+
+		if(data.playerChance.playerB){
+			cardA.innerText = `${data.currentplayer.cards[0]}  |  `;
+			cardB.innerText = `|  ${data.currentplayer.cards[1]}  |  `;
+			cardC.innerText = `|  ${data.currentplayer.cards[2]}  |  `;
+			cardD.innerText = `|  ${data.currentplayer.cards[3]}  `;
+		}
+
+		if(data.playerChance.playerC){
+			cardA.innerText = `|  ${data.currentplayer.cards[0]}  |  `;
+			cardB.innerText = `|  ${data.currentplayer.cards[1]}  |  `;
+			cardC.innerText = `|  ${data.currentplayer.cards[2]}  |  `;
+			cardD.innerText = `|  ${data.currentplayer.cards[3]}  `;
+		}
+
+		if(data.playerChance.playerD){
+			cardA.innerText = `|  ${data.currentplayer.cards[0]}  |  `;
+			cardB.innerText = `|  ${data.currentplayer.cards[1]}  |  `;
+			cardC.innerText = `|  ${data.currentplayer.cards[2]}  |  `;
+			cardD.innerText = `|  ${data.currentplayer.cards[3]}  `;
+		}
+	});
+
 	socket.on('question', (data) => {
 		cardsEl.classList.remove('hidden');
 		questionEl.innerText = `${data.question.expression} = ?`;
-		console.log(data.playerChance);
+		
 		if(data.playerChance.playerA){
 			Object.assign(playerA.style,{display:"none"});
 			Object.assign(playerB.style,{    
@@ -64,7 +98,7 @@ function startGame() {
 		});
 		}
 
-		if(data.playerChance.playerB){
+		else if(data.playerChance.playerB){
 			Object.assign(playerB.style,{display:"none"});
 			Object.assign(playerC.style,{    
 				margin:"250px -60px 40px 20px",
@@ -84,7 +118,7 @@ function startGame() {
 		});
 		}
 
-		if(data.playerChance.playerC){
+		else if(data.playerChance.playerC){
 			Object.assign(playerC.style,{display:"none"});
 			Object.assign(playerD.style,{    
 				margin:"250px -60px 40px 20px",
@@ -104,7 +138,7 @@ function startGame() {
 		});
 		}
 
-		if(data.playerChance.playerD){
+		else {
 			Object.assign(playerD.style,{display:"none"});
 			Object.assign(playerA.style,{    
 				margin:"250px -60px 40px 20px",
@@ -124,7 +158,7 @@ function startGame() {
 		});
 		}
 
-		});
+	});
 
 
 	socket.on('leaderboard', (leaderboard) => {
