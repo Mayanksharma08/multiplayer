@@ -43,7 +43,6 @@ userEl.addEventListener("click", (e) => {
 function startGame() {
 	introEl.classList.add('hidden');
 	gameEl.classList.remove('hidden');
-
 	socket.on('UIupdate', (data) => {
 		if(data.playerChance.playerA){
 			cardA.innerText = `${data.currentplayer.cards[0]}  |`;
@@ -79,6 +78,10 @@ function startGame() {
 		questionEl.innerText = `${data.question.expression} = ?`;
 		
 		if(data.playerChance.playerA){
+			cardA.innerText = `${data.playerA.cards[0]}  |  `;
+			cardB.innerText = `${data.playerA.cards[1]}  |  `;
+			cardC.innerText = `${data.playerA.cards[2]}  |  `;
+			cardD.innerText = `${data.playerA.cards[3]}  `;
 			Object.assign(playerA.style,{display:"none"});
 			Object.assign(playerB.style,{    
 				margin:"250px -60px 40px 20px",
@@ -99,6 +102,10 @@ function startGame() {
 		}
 
 		else if(data.playerChance.playerB){
+			cardA.innerText = `${data.playerB.cards[0]}  |  `;
+			cardB.innerText = `${data.playerB.cards[1]}  |  `;
+			cardC.innerText = `${data.playerB.cards[2]}  |  `;
+			cardD.innerText = `${data.playerB.cards[3]}  `;
 			Object.assign(playerB.style,{display:"none"});
 			Object.assign(playerC.style,{    
 				margin:"250px -60px 40px 20px",
@@ -119,6 +126,10 @@ function startGame() {
 		}
 
 		else if(data.playerChance.playerC){
+			cardA.innerText = `${data.playerC.cards[0]}  |  `;
+			cardB.innerText = `${data.playerC.cards[1]}  |  `;
+			cardC.innerText = `${data.playerC.cards[2]}  |  `;
+			cardD.innerText = `${data.playerC.cards[3]}  `;
 			Object.assign(playerC.style,{display:"none"});
 			Object.assign(playerD.style,{    
 				margin:"250px -60px 40px 20px",
@@ -139,6 +150,10 @@ function startGame() {
 		}
 
 		else {
+			cardA.innerText = `${data.playerD.cards[0]}  |  `;
+			cardB.innerText = `${data.playerD.cards[1]}  |  `;
+			cardC.innerText = `${data.playerD.cards[2]}  |  `;
+			cardD.innerText = `${data.playerD.cards[3]}  |  `;
 			Object.assign(playerD.style,{display:"none"});
 			Object.assign(playerA.style,{    
 				margin:"250px -60px 40px 20px",
