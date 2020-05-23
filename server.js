@@ -148,11 +148,12 @@ function updateGame(room) {
 		io.to(room).emit('leaderboard', leaderboard);
 }
 
-/*ss USE THIS ON GLITCH
+//ss USE THIS ON GLITCH
  http.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + process.env.PORT);
  });
-*/
+/*
 http.listen(3000, () => {
 	console.log('Your app is listening on port ' + 3000);
 });
+*/
